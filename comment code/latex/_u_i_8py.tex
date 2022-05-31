@@ -1,0 +1,168 @@
+\hypertarget{_u_i_8py}{}\section{U\+I.\+py File Reference}
+\label{_u_i_8py}\index{U\+I.\+py@{U\+I.\+py}}
+
+
+This file contains the code of R\+T\+\_\+3 assignment.  
+
+
+\subsection*{Functions}
+\begin{DoxyCompactItemize}
+\item 
+def \hyperlink{_u_i_8py_a9322af40e49cdf9ee90b0834bd1cf15c}{U\+I.\+clbk\+\_\+laser} (msg)
+\begin{DoxyCompactList}\small\item\em Identify obstacles around robot. \end{DoxyCompactList}\item 
+def \hyperlink{_u_i_8py_a463034ca9df975cbd427f3debd80207d}{U\+I.\+take\+\_\+action} (regions)
+\begin{DoxyCompactList}\small\item\em Repredenting obstacles and emergency stop. \end{DoxyCompactList}\item 
+def \hyperlink{_u_i_8py_a52bfe7bc25e578c9aa5a8e1b663044f1}{U\+I.\+K\+B\+\_\+control} ()
+\begin{DoxyCompactList}\small\item\em Control robot with keyboard. \end{DoxyCompactList}\item 
+def \hyperlink{_u_i_8py_ae9a1b25d1dc239e70bcb4e30914a8fd2}{U\+I.\+K\+B\+\_\+control\+\_\+collision\+\_\+avoidance} ()
+\begin{DoxyCompactList}\small\item\em Control robot with keyboard equipped with internal collision avoidance. \end{DoxyCompactList}\item 
+def \hyperlink{_u_i_8py_ade833b55a7cfb5c2de649e4f34c1fb85}{U\+I.\+mov\+\_\+goal} ()
+\begin{DoxyCompactList}\small\item\em Reach the desired goal inputed by user. \end{DoxyCompactList}\end{DoxyCompactItemize}
+\subsection*{Variables}
+\begin{DoxyCompactItemize}
+\item 
+\mbox{\Hypertarget{_u_i_8py_a851b5dda944c38553ec0eb91df2d75b6}\label{_u_i_8py_a851b5dda944c38553ec0eb91df2d75b6}} 
+\hyperlink{_u_i_8py_a851b5dda944c38553ec0eb91df2d75b6}{U\+I.\+pub\+\_\+vel} = rospy.\+Publisher(\char`\"{}cmd\+\_\+vel\char`\"{}, Twist)
+\begin{DoxyCompactList}\small\item\em This variable is a object for making the robot move. \end{DoxyCompactList}\item 
+\mbox{\Hypertarget{_u_i_8py_a25b0028ce7c75afcc6daaa7b67382cbe}\label{_u_i_8py_a25b0028ce7c75afcc6daaa7b67382cbe}} 
+\hyperlink{_u_i_8py_a25b0028ce7c75afcc6daaa7b67382cbe}{U\+I.\+pub\+\_\+goal} = rospy.\+Publisher(\char`\"{}/move\+\_\+base/goal\char`\"{}, Move\+Base\+Action\+Goal)
+\begin{DoxyCompactList}\small\item\em This variable is a obeject can be used to move the robot to an objective position. \end{DoxyCompactList}\item 
+\mbox{\Hypertarget{_u_i_8py_a0a12e9c5419bfcabfdaae87f1432c361}\label{_u_i_8py_a0a12e9c5419bfcabfdaae87f1432c361}} 
+int \hyperlink{_u_i_8py_a0a12e9c5419bfcabfdaae87f1432c361}{U\+I.\+C\+A\+\_\+status} = -\/1
+\begin{DoxyCompactList}\small\item\em This variable is for knowing the status of obstacles around the robot which allows me setting strategies to avoid obstacles. \end{DoxyCompactList}\item 
+\mbox{\Hypertarget{_u_i_8py_a1963e428a77746d7f50a0b2dbad420d5}\label{_u_i_8py_a1963e428a77746d7f50a0b2dbad420d5}} 
+string \hyperlink{_u_i_8py_a1963e428a77746d7f50a0b2dbad420d5}{U\+I.\+state\+\_\+description} = \textquotesingle{}\textquotesingle{}
+\begin{DoxyCompactList}\small\item\em This is for showing the info of C\+A\+\_\+status. \end{DoxyCompactList}\item 
+\hyperlink{_u_i_8py_aa85f17f338b0fe4536d688ed55e82d94}{U\+I.\+vel} = Twist()
+\begin{DoxyCompactList}\small\item\em This is a variable that can be used for knowing the speed information of robot. \end{DoxyCompactList}\end{DoxyCompactItemize}
+
+
+\subsection{Detailed Description}
+This file contains the code of R\+T\+\_\+3 assignment. 
+
+\begin{DoxyAuthor}{Author}
+Zhouyang Hong 
+\end{DoxyAuthor}
+\begin{DoxyVersion}{Version}
+1.\+0 
+\end{DoxyVersion}
+\begin{DoxyDate}{Date}
+17/05/2022
+\end{DoxyDate}
+Subscribes to\+: /scan For geeting the informations about environment
+
+Publishes to\+: cmd\+\_\+vel and /move\+\_\+base/goal For setting the speed of robot and input a a target and the robot moves to there.
+
+Node name\+: UI
+
+Description\+: This is a program consists of three main modules which are
+\begin{DoxyEnumerate}
+\item input and go to a target
+\item controlled manually by keyboard
+\item controlled by keyboard but hitting obstacles is avoided internally. For using them just run this program and follow the instructions shows up. 
+\end{DoxyEnumerate}
+
+\subsection{Function Documentation}
+\mbox{\Hypertarget{_u_i_8py_file_a9322af40e49cdf9ee90b0834bd1cf15c}\label{_u_i_8py_file_a9322af40e49cdf9ee90b0834bd1cf15c}} 
+\index{U\+I.\+py@{U\+I.\+py}!clbk\+\_\+laser@{clbk\+\_\+laser}}
+\index{clbk\+\_\+laser@{clbk\+\_\+laser}!U\+I.\+py@{U\+I.\+py}}
+\subsubsection{\texorpdfstring{clbk\+\_\+laser()}{clbk\_laser()}}
+{\footnotesize\ttfamily def U\+I.\+clbk\+\_\+laser (\begin{DoxyParamCaption}\item[{}]{msg }\end{DoxyParamCaption})}
+
+
+
+Identify obstacles around robot. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em The} & data from scan which is data about the environment \\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+..
+\end{DoxyReturn}
+This is the laser data callback,and will be called any time when receiced scan data. the emergence brake is set inside this part. The scan data are divided into 5 ranges and take the minimum then being further processed for letting robot knows curren state. \mbox{\Hypertarget{_u_i_8py_file_a52bfe7bc25e578c9aa5a8e1b663044f1}\label{_u_i_8py_file_a52bfe7bc25e578c9aa5a8e1b663044f1}} 
+\index{U\+I.\+py@{U\+I.\+py}!K\+B\+\_\+control@{K\+B\+\_\+control}}
+\index{K\+B\+\_\+control@{K\+B\+\_\+control}!U\+I.\+py@{U\+I.\+py}}
+\subsubsection{\texorpdfstring{K\+B\+\_\+control()}{KB\_control()}}
+{\footnotesize\ttfamily def U\+I.\+K\+B\+\_\+control (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption})}
+
+
+
+Control robot with keyboard. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em ..} & \\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+..
+\end{DoxyReturn}
+This function is for the control of robot by using keyboard everything is done by user. \mbox{\Hypertarget{_u_i_8py_file_ae9a1b25d1dc239e70bcb4e30914a8fd2}\label{_u_i_8py_file_ae9a1b25d1dc239e70bcb4e30914a8fd2}} 
+\index{U\+I.\+py@{U\+I.\+py}!K\+B\+\_\+control\+\_\+collision\+\_\+avoidance@{K\+B\+\_\+control\+\_\+collision\+\_\+avoidance}}
+\index{K\+B\+\_\+control\+\_\+collision\+\_\+avoidance@{K\+B\+\_\+control\+\_\+collision\+\_\+avoidance}!U\+I.\+py@{U\+I.\+py}}
+\subsubsection{\texorpdfstring{K\+B\+\_\+control\+\_\+collision\+\_\+avoidance()}{KB\_control\_collision\_avoidance()}}
+{\footnotesize\ttfamily def U\+I.\+K\+B\+\_\+control\+\_\+collision\+\_\+avoidance (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption})}
+
+
+
+Control robot with keyboard equipped with internal collision avoidance. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em ..} & \\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+..
+\end{DoxyReturn}
+This function is to control the robot with keyboard while equipped with function of avoiding hitting obstacles \mbox{\Hypertarget{_u_i_8py_file_ade833b55a7cfb5c2de649e4f34c1fb85}\label{_u_i_8py_file_ade833b55a7cfb5c2de649e4f34c1fb85}} 
+\index{U\+I.\+py@{U\+I.\+py}!mov\+\_\+goal@{mov\+\_\+goal}}
+\index{mov\+\_\+goal@{mov\+\_\+goal}!U\+I.\+py@{U\+I.\+py}}
+\subsubsection{\texorpdfstring{mov\+\_\+goal()}{mov\_goal()}}
+{\footnotesize\ttfamily def U\+I.\+mov\+\_\+goal (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption})}
+
+
+
+Reach the desired goal inputed by user. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em ..} & \\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+..
+\end{DoxyReturn}
+By calling this function, users will be asked to input a target point and then the robot will move there in case of possible \mbox{\Hypertarget{_u_i_8py_file_a463034ca9df975cbd427f3debd80207d}\label{_u_i_8py_file_a463034ca9df975cbd427f3debd80207d}} 
+\index{U\+I.\+py@{U\+I.\+py}!take\+\_\+action@{take\+\_\+action}}
+\index{take\+\_\+action@{take\+\_\+action}!U\+I.\+py@{U\+I.\+py}}
+\subsubsection{\texorpdfstring{take\+\_\+action()}{take\_action()}}
+{\footnotesize\ttfamily def U\+I.\+take\+\_\+action (\begin{DoxyParamCaption}\item[{}]{regions }\end{DoxyParamCaption})}
+
+
+
+Repredenting obstacles and emergency stop. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em The} & distance of the closest obeject around the robot in 5 directions \\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+..
+\end{DoxyReturn}
+This functions is for representing the distributions of obstacles around the robot with specific number. C\+A\+\_\+status will be updated according to the current situation. Emergency stop is achieved here 
+
+\subsection{Variable Documentation}
+\mbox{\Hypertarget{_u_i_8py_file_aa85f17f338b0fe4536d688ed55e82d94}\label{_u_i_8py_file_aa85f17f338b0fe4536d688ed55e82d94}} 
+\index{U\+I.\+py@{U\+I.\+py}!vel@{vel}}
+\index{vel@{vel}!U\+I.\+py@{U\+I.\+py}}
+\subsubsection{\texorpdfstring{vel}{vel}}
+{\footnotesize\ttfamily U\+I.\+vel = Twist()}
+
+
+
+This is a variable that can be used for knowing the speed information of robot. 
+
