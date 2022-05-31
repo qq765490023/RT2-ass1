@@ -1,6 +1,6 @@
 Research Track 2nd assignment 1
 by:
-Zhouyang HOng
+Zhouyang Hong
 s5197402
 
 # Code comment
