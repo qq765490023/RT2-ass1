@@ -15,6 +15,7 @@ if you choose mode 1 and set some targets, then the 3rd plot will show some gree
 ![](assets/16539866058345.jpg)
 
 in order to be able to run the jupyter interface, first we need to run the environment.
+    
     go to the ros_work_space/src
     git clone https://github.com/CarmineD8/final_assignment.git
     back to ros_work_space/ run catkin_make
@@ -27,6 +28,7 @@ in order to be able to run the jupyter interface, first we need to run the envir
     
     
 # Analysis
+   
    In this part, I used 2-sample T-test to analyze the time costs between my code and Carmine's code. Since 10 silver tokens are randomly placed on the map, so a lot of unexpected things happened. Like go grabbing silver tokens on the middle, which is inside the wall but the robot still trys to across the wall to grab it, and also go backward before finishing a complete loop. Sometimes it even costs me half hour to collect a valid data, that's why I choose to use T-test instead of Z-test.
     inside Analysis/ you can find Zhouyang_report.pdf, which is the details of this test.
     
